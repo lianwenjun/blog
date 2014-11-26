@@ -8,7 +8,7 @@ class LoginController extends BaseController {
 	* GET /login/signin
 	* @return Response
 	*/
-	public function signin()
+	public function index()
 	{
 		
 		return  View::make('admin.login');
@@ -21,33 +21,10 @@ class LoginController extends BaseController {
 	 * 
 	 * @return Response
 	 */
-	public function doSignin()
+	public function check()
     	{
-		try {
-		    $credentials = [
-		        'username' => Input::post('username'),
-		        'password' => Input::post('password'),
-		    ];
-		    $user = Sentry::authenticate($credentials, false);
-
-		    return Redirect::route('admin.index');
-		} catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户名必填"]);
-		} catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "密码必填"]);
-		} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户名密码不正确"]);
-		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户不存在"]);
-		} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户未激活"]);
-		} catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户已挂起"]);
-		} catch (Cartalyst\Sentry\Throttling\UserBannedException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户已冻结"]);
-		}
-
-	    	return Redirect::route('users.signin');
+		
+	    	return Redirect::route('users.index');
    	 }
    	
 

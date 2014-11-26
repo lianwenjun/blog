@@ -20,8 +20,8 @@ Route::get('/', function()
 	return View::make('hello');
 });
 //后台文件
-Route::get('admin/login/signin', ['as' => 'login.signin', 'uses' => 'LoginController@signin']);
-Route::put('admin/login/signin', ['as' => 'login.signin', 'uses' => 'LoginController@doSignin']);
+Route::get('admin/login/index', ['as' => 'login.index', 'uses' => 'LoginController@index']);
+Route::put('admin/login/check', ['as' => 'login.index', 'uses' => 'LoginController@check']);
 Route::group(['prefix' => 'admin', 'before' => 'adminAuth'], function()
 {	
 	Route::get('add/index', ['as' => 'add.index', 'uses' => 'AddController@index']);

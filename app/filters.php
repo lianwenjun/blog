@@ -96,8 +96,7 @@ Route::filter('csrf', function()
 */
 Route::filter('adminAuth', function()
 {
-	if (! Sentry::check())
-	{
-	    return "<script>window.parent.location.href='".URL::route('login.signin')."';</script>";
-	}
+	
+	    return "<script>window.parent.location.href='".URL::route('login.index')."';</script>";
+	
 });

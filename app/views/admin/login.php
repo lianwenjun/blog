@@ -531,7 +531,7 @@ fieldset
 
 
 <!--登陆框START-->
-<form id="login" action="<?php echo URL::route('login.signin'); ?>" method="post">
+<form id="login" action="<?php echo URL::route('login.index'); ?>" method="post">
     <h1>LogIn</h1>
     <fieldset id="inputs">
 	<input id="username" type="text" placeholder="用户名/ID" name="username">
