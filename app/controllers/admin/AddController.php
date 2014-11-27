@@ -8,7 +8,7 @@ class AddController extends BaseController {
 	* GET /login/signin
 	* @return Response
 	*/
-	public function signin()
+	public function index()
 	{
 		return  View::make('admin.login');
 	}

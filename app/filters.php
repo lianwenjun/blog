@@ -96,7 +96,8 @@ Route::filter('csrf', function()
 */
 Route::filter('adminAuth', function()
 {
-	
-	    return "<script>window.parent.location.href='".URL::route('login.index')."';</script>";
+	if (!Auth::check()){
+		return "<script>window.parent.location.href='".URL::route('user.login')."';</script>";
+	}
 	
 });

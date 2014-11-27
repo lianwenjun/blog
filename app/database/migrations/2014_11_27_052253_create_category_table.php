@@ -12,7 +12,12 @@ class CreateCategoryTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('category', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('cat_name',50);
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +27,7 @@ class CreateCategoryTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('category');
 	}
 
 }

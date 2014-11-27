@@ -531,12 +531,15 @@ fieldset
 
 
 <!--登陆框START-->
-<form id="login" action="<?php echo URL::route('login.index'); ?>" method="post">
+<form id="login" action="<?php echo URL::route('user.login'); ?>" method="post">
     <h1>LogIn</h1>
     <fieldset id="inputs">
 	<input id="username" type="text" placeholder="用户名/ID" name="username">
+
 	<input id="password" type="password" placeholder="密码" name="password" >
-	
+            <?php if(Session::has('tips')) : ?>
+                <li style="text-align: center;"><span class="<?php echo Session::get('tips')['success'] ? 'success' : 'fail' ?>"><?php echo  Session::get('tips')['message']; ?></span></li>
+            <?php endif?>
     </fieldset>
     <fieldset id="actions">
         <input type="submit" id="submit" value="登陆">	  
