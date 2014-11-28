@@ -4,7 +4,7 @@
  @section('content')
         <div class="content">
             <div class="tab">
-            {{ Form::open(array('url' => 'admin/add/addArticle')) }}
+            {{ Form::open(array('url' => 'admin/article/addArticle')) }}
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
          <tbody>
               <tr class="Search_biao_two">

@@ -3,7 +3,7 @@
 class Articles extends \Eloquent {
 
     protected $table = 'articles';
-
+    protected $guarded = array('id', 'account_id');
     /**
      * 文章列表查询
      **/
@@ -15,7 +15,7 @@ class Articles extends \Eloquent {
             $id = $v['cat_id'];
             $art_id = $v['id'];
             $v['cat_name'] = Category::find($id)['cat_name'];
-            $v['com_count'] = Comment::where('art_id', $art_id)->count();
+            $v['com_count'] = Comment::where('art_id', $id)->count();
             $datass[] = $v;
         }
 
@@ -27,7 +27,7 @@ class Articles extends \Eloquent {
      **/
     public function del($id)
     {
-        return DB::table($this->table)->where('id', '=', $id)->delete();
+        return Articles::find($id)->delete();
     }
 
    /**
@@ -35,12 +35,12 @@ class Articles extends \Eloquent {
      **/
     public function insert($data)
     {
-        $id = Articles::insertGetId($data);
+        $id = Articles::create($data);
         return $id;
     }
     
     /**
-     * 获取文章更新信息
+     * 获取单条文章
      **/
     public function getone($id)
     {

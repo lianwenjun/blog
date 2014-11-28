@@ -27,8 +27,8 @@
     {   
         Route::get('user/logout', ['as' => 'user.logout', 'uses' => 'UserController@logout']);
 
-        Route::get('add/index', ['as' => 'add.index', 'uses' => 'AddController@index']);
-        Route::post('add/addArticle', ['as' => 'add.addArticle', 'uses' => 'AddController@addArticle']);
+        Route::get('article/addIndex', ['as' => 'article.addIndex', 'uses' => 'ArticleController@addIndex']);
+        Route::post('article/addArticle', ['as' => 'article.addArticle', 'uses' => 'ArticleController@addArticle']);
 
         Route::get('article/index', ['as' => 'article.index', 'uses' => 'ArticleController@index']);
         Route::get('article/del/{id}', ['as' => 'article.del', 'uses' => 'ArticleController@del']);

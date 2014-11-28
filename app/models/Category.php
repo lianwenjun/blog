@@ -3,7 +3,7 @@
 class Category extends \Eloquent {
 
     protected $table = 'category';
-    
+    protected $guarded = array('id', 'account_id');
     /**
      * 文章列表查询
      **/
@@ -16,7 +16,6 @@ class Category extends \Eloquent {
             $v['count'] = Articles::where('cat_id', $id)->count();
             $datass[] = $v;
         }
-        
         return $datass;  
     }
     /*
@@ -31,7 +30,7 @@ class Category extends \Eloquent {
      **/
     public function insert($data)
     {
-        $id = Category::insertGetId($data);
+        $id = Category::create($data);
         return $id;
     }
 

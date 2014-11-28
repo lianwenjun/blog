@@ -20,7 +20,7 @@
                         <td>@if(empty($data->cat_name))未分类 @else{{$data->cat_name}}@endif</td>
                         <td>{{$data->title}}</td>
                         <td>{{$data->com_count}}</td>
-                        <td>{{$data->created_at}}</td>
+                        <td>@if(isset($data->updated_at)) {{ $data->updated_at }} @else {{$data->created_at}} @endif</td>
                         <td>
                             <a class="Search_show"  href="{{ URL::route('article.update', $data->id) }}">编辑</a>
                             <a class="Search_del jq-delete" href="{{ URL::route('article.del', $data->id) }}">删除</a>

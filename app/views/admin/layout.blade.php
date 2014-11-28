@@ -147,7 +147,7 @@
             <div class="m_title">文章管理</div> 
             <ul>
                 <li><a href="{{ URL::route('article.index') }}">文章列表</a></li>
-                <li><a href="{{ URL::route('add.index') }}">添加文章</a></li>   
+                <li><a href="{{ URL::route('article.addIndex') }}">添加文章</a></li>   
             </ul>
             <div class="m_title">类别管理</div> 
             <ul>
