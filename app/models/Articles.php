@@ -18,8 +18,7 @@ class Articles extends \Eloquent {
             $v['com_count'] = Comment::where('art_id', $id)->count();
             $datass[] = $v;
         }
-
-        return $datass;  
+        return $data = empty($datass) ? $datas : $datass;
     }
 
     /**

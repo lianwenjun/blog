@@ -16,7 +16,7 @@ class Category extends \Eloquent {
             $v['count'] = Articles::where('cat_id', $id)->count();
             $datass[] = $v;
         }
-        return $datass;  
+        return $data = empty($datass) ? $datas : $datass;
     }
     /*
     public function getOne($id)

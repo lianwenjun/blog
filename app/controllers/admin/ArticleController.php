@@ -12,6 +12,7 @@ class ArticleController extends BaseController {
     {
         $model = new Articles();
         $lists = $model->lists();
+        
         $this->layout->content = View::make('admin.article')->with('lists', $lists);
     }
 

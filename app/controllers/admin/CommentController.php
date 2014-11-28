@@ -12,7 +12,6 @@ class CommentController extends BaseController {
     {
         $model = new Comment();
         $lists = $model->lists();
-       
         $this->layout->content = View::make('admin.comment')->with('lists', $lists);
     }
 

@@ -3,7 +3,7 @@
 class Comment extends \Eloquent {
 
     protected $table = 'comments';
-    
+    protected $guarded = array('id', 'account_id');
     /**
      * 评论列表查询
      **/
@@ -14,9 +14,9 @@ class Comment extends \Eloquent {
         foreach($datas as $key=>$v){
             $art_id = $v['art_id'];
             $v['art_title'] = Articles::find($art_id )['title'];
-            $datass[] = $v;
+            $datas[] = $v;
         }
-        return $datass;  
+        return $data = empty($datass) ? $datas : $datass;
     }
     
     /**

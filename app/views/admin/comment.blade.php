@@ -30,23 +30,22 @@
                         <td width="15%">添加时间</td>
                         <td width="10%">操作</td>
                     </tr>
-                  @foreach($lists as $data)
+                  @forelse($lists as $data)
                     <tr class="jq-tr Search_biao_one">
                         <td>{{ $data->id}}</td>
                         <td>{{ $data->art_title}}</td>
                         <td>{{ $data->content}}</td>
                         <td>@if( $data->user_id == 0) 匿名 @endif</td>
-                        <td>{{ $data->created_at}}</td>
+                        <td>@if(isset($data->updated_at)) {{ $data->updated_at}} @else {{ $data->created_at}} @endif</td>
                         <td>
                             <a class="Search_del jq-delete" href="{{ URL::route('comment.del', $data->id) }}">删除</a>
                         </td>
                     </tr>
-                    @if(empty($lists))
+                    @empty
                     <tr class="no-data">
                         <td colspan="6">暂时还没有数据</td>
                     </tr>
-                    @endif
-                    @endforeach
+                    @endforelse
                    
                 </tbody>
             </table>
