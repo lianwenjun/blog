@@ -14,9 +14,9 @@ class Comment extends \Eloquent {
         foreach($datas as $key=>$v){
             $art_id = $v['art_id'];
             $v['art_title'] = Articles::find($art_id )['title'];
-            $datas[] = $v;
+            $datass[] = $v;
         }
-        return $datas;  
+        return $datass;  
     }
     
     /**
