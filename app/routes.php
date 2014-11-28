@@ -26,10 +26,20 @@
     Route::group(['prefix' => 'admin', 'before' => 'adminAuth'], function()
     {   
         Route::get('user/logout', ['as' => 'user.logout', 'uses' => 'UserController@logout']);
+
         Route::get('add/index', ['as' => 'add.index', 'uses' => 'AddController@index']);
+        Route::post('add/addArticle', ['as' => 'add.addArticle', 'uses' => 'AddController@addArticle']);
+
         Route::get('article/index', ['as' => 'article.index', 'uses' => 'ArticleController@index']);
-        Route::get('article/del', ['as' => 'article.del', 'uses' => 'ArticleController@del']);
-        Route::get('article/updata', ['as' => 'article.update', 'uses' => 'ArticleController@updata']);
+        Route::get('article/del/{id}', ['as' => 'article.del', 'uses' => 'ArticleController@del']);
+        Route::get('article/update/{id}', ['as' => 'article.update', 'uses' => 'ArticleController@update']);
+        Route::post('article/doUpdate', ['as' => 'article.doupdate', 'uses' => 'ArticleController@doupdate']);
+
         Route::get('category/index', ['as' => 'category.index', 'uses' => 'CategoryController@index']);
-        Route::get('menu/index', ['as' => 'menu.index', 'uses' => 'MenuController@index']);
+        Route::get('category/del/{id}', ['as' => 'category.del', 'uses' => 'CategoryController@del']);
+        Route::post('category/add', ['as' => 'category.add', 'uses' => 'CategoryController@add']);
+
+        Route::get('comment/index', ['as' => 'comment.index', 'uses' => 'CommentController@index']);
+        Route::get('comment/del/{id}', ['as' => 'comment.del', 'uses' => 'CommentController@del']);
+        Route::get('comment/update/{id}', ['as' => 'comment.update', 'uses' => 'CommentController@update']);
     }); 

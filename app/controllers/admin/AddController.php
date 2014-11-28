@@ -4,48 +4,38 @@
 
 class AddController extends BaseController {
 
-	/**
-	* GET /login/signin
-	* @return Response
-	*/
-	public function index()
-	{
-		return  View::make('admin.login');
-	}
+    /**
+    * GET /add/index 添加文章
+    * @return Response
+    */
+    public function index()
+    {
+         $model_Cat = new Category();
+         $cat_lists = $model_Cat->lists();
+         $this->layout->content = View::make('admin.articleAdd')->with('cat_lists',$cat_lists);  
+    }
 
-	/**
-	 * 管理员登陆
-	 * PUT /login/doSignin
-	 * 
-	 * @return Response
-	 */
-	public function doSignin()
-    	{
-		try {
-		    $credentials = [
-		        'username' => Input::get('username'),
-		        'password' => Input::get('password'),
-		    ];
-		    $user = Sentry::authenticate($credentials, false);
+    /**
+    * GET /add/articleAdd  提交文章
+    * @return Response
+    */
+    public function addArticle()
+    {
+        $model = new Articles();
+        $data = ['cat_id' => Input::get('cat_id'), 'title' => Input::get('title'), 'content' => Input::get('content')];
+        
+         if(empty($data['cat_id'])){
+            return "<script>alert('文章分类不能为空');window.history.back()</script>";
+        }else if(empty($data['title'])){
+            return "<script>alert('文章标题 不能为空');window.history.back()</script>";
+        }else if(empty($data['content'])){
+            return "<script>alert('文章内容不能为空');window.history.back()</script>";
+        }else{
+            $model->insert($data);
+        }
+        return Redirect::route('article.index');
+    }
 
-		    return Redirect::route('admin.index');
-		} catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户名必填"]);
-		} catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "密码必填"]);
-		} catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户名密码不正确"]);
-		} catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户不存在"]);
-		} catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户未激活"]);
-		} catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户已挂起"]);
-		} catch (Cartalyst\Sentry\Throttling\UserBannedException $e) {
-		    Session::flash('tips', ['success' => false, 'message' => "用户已冻结"]);
-		}
 
-	    	return Redirect::route('users.signin');
-   	 }
-
+    
 }
