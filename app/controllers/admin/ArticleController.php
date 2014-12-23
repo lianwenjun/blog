@@ -5,11 +5,38 @@
 class ArticleController extends BaseController {
 
     /**
+    *excel文档的创建
+    */
+    public function downloadExcel() {
+        
+        Excel::create('Filename', function($excel) {
+
+            $excel->sheet('Sheetname', function($sheet) {
+                
+                $model = new Articles();
+                $lists = $model->lists();
+                $sheet->fromArray(      
+                        json_decode(json_encode($lists), true)
+                );
+
+                $sheet->cells('A1:H1', function($cells) {
+                    
+                    $cells->setAlignment('center');
+                    $cells->setValignment('middle');
+                    
+                });
+                    $sheet->setHeight(1,20);
+                    $sheet->setAutoSize(true);
+            });
+
+        })->export('xls');
+    }
+
+    /**
     * GET /login/signin
     * @return Response
     */
-    public function index()
-    {
+    public function index() {
         $model = new Articles();
         $lists = $model->lists();
         
@@ -20,8 +47,7 @@ class ArticleController extends BaseController {
     * GET /add/index 添加文章
     * @return Response
     */
-    public function addIndex()
-    {
+    public function addIndex() {
          $model_Cat = new Category();
          $cat_lists = $model_Cat->lists();
          $this->layout->content = View::make('admin.articleAdd')->with('cat_lists',$cat_lists);  
@@ -31,8 +57,7 @@ class ArticleController extends BaseController {
     * GET /add/articleAdd  提交文章
     * @return Response
     */
-    public function addArticle()
-    {
+    public function addArticle() {
         $model = new Articles();
         $data = ['title' => Input::get('title'), 'content' => Input::get('content'), 'cat_id' => Input::get('cat_id')];
         
@@ -54,8 +79,7 @@ class ArticleController extends BaseController {
     *
     * @return Response
     */
-    public function del($id)
-    {
+    public function del($id) {
         $model = new Articles();
         $model->del($id);
         return Redirect::back();
@@ -67,8 +91,7 @@ class ArticleController extends BaseController {
     *
     * @return Response
     */
-    public function update($id)
-    {
+    public function update($id) {
         $model = new Articles();
         $datas = $model->getone($id);
         $model_cat = new Category();
@@ -78,8 +101,7 @@ class ArticleController extends BaseController {
                                                         ->with('cats',$cats);
     }
 
-    public function doUpdate()
-    {
+    public function doUpdate() {
         $model = new Articles();
         $data = [
             'cat_id' => Input::get('cat_id'), 

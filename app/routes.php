@@ -31,6 +31,7 @@
         Route::post('article/addArticle', ['as' => 'article.addArticle', 'uses' => 'ArticleController@addArticle']);
 
         Route::get('article/index', ['as' => 'article.index', 'uses' => 'ArticleController@index']);
+        Route::get('article/downloadExcel', ['as' => 'article.excel', 'uses' => 'ArticleController@downloadExcel']);
         Route::get('article/del/{id}', ['as' => 'article.del', 'uses' => 'ArticleController@del']);
         Route::get('article/update/{id}', ['as' => 'article.update', 'uses' => 'ArticleController@update']);
         Route::post('article/doUpdate', ['as' => 'article.doupdate', 'uses' => 'ArticleController@doupdate']);
