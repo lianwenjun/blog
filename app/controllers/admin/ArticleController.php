@@ -5,30 +5,24 @@
 class ArticleController extends BaseController {
 
     /**
-    *excel文档的创建
+    *excel文档导出
+    *
     */
     public function downloadExcel() {
-        
         Excel::create('Filename', function($excel) {
-
             $excel->sheet('Sheetname', function($sheet) {
-                
                 $model = new Articles();
                 $lists = $model->lists();
                 $sheet->fromArray(      
                         json_decode(json_encode($lists), true)
                 );
-
                 $sheet->cells('A1:H1', function($cells) {
-                    
                     $cells->setAlignment('center');
                     $cells->setValignment('middle');
-                    
                 });
                     $sheet->setHeight(1,20);
                     $sheet->setAutoSize(true);
             });
-
         })->export('xls');
     }
 
@@ -39,7 +33,6 @@ class ArticleController extends BaseController {
     public function index() {
         $model = new Articles();
         $lists = $model->lists();
-        
         $this->layout->content = View::make('admin.article')->with('lists', $lists);
     }
 
@@ -61,13 +54,13 @@ class ArticleController extends BaseController {
         $model = new Articles();
         $data = ['title' => Input::get('title'), 'content' => Input::get('content'), 'cat_id' => Input::get('cat_id')];
         
-         if(empty($data['cat_id'])){
+        if (empty($data['cat_id'])) {
             return "<script>alert('文章分类不能为空');window.history.back()</script>";
-        }else if(empty($data['title'])){
+        } else if (empty($data['title'])) {
             return "<script>alert('文章标题 不能为空');window.history.back()</script>";
-        }else if(empty($data['content'])){
+        } else if (empty($data['content'])) {
             return "<script>alert('文章内容不能为空');window.history.back()</script>";
-        }else{
+        } else {
             $model->insert($data);                                                                                                                                                                                      
         }                                                                                                   
         return Redirect::route('article.index');
@@ -97,16 +90,16 @@ class ArticleController extends BaseController {
         $model_cat = new Category();
         $cats = $model_cat->lists(); 
         $this->layout->content = View::make('admin.articleUpdate')
-                                                        ->with('datas',$datas)
-                                                        ->with('cats',$cats);
+                                                ->with('datas',$datas)
+                                                ->with('cats',$cats);
     }
 
     public function doUpdate() {
         $model = new Articles();
         $data = [
-            'cat_id' => Input::get('cat_id'), 
-            'title' => Input::get('title'), 
-            'content' => Input::get('content')
+            'cat_id'     => Input::get('cat_id'), 
+            'title'        => Input::get('title'), 
+            'content'  => Input::get('content')
         ];
         $id = Input::get('hid_id');
         $model->doUpdate($id, $data);

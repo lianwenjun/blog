@@ -7,7 +7,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"cartalyst/sentry": "2.1.*",
-		"maatwebsite/excel": "1.*"
+		"maatwebsite/excel": "1.*",
+		"jildertmiedema/laravel-plupload": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -30,17 +30,20 @@
         Route::get('article/addIndex', ['as' => 'article.addIndex', 'uses' => 'ArticleController@addIndex']);
         Route::post('article/addArticle', ['as' => 'article.addArticle', 'uses' => 'ArticleController@addArticle']);
 
-        Route::get('article/index', ['as' => 'article.index', 'uses' => 'ArticleController@index']);
+        Route::get('article', ['as' => 'article.index', 'uses' => 'ArticleController@index']);
         Route::get('article/downloadExcel', ['as' => 'article.excel', 'uses' => 'ArticleController@downloadExcel']);
         Route::get('article/del/{id}', ['as' => 'article.del', 'uses' => 'ArticleController@del']);
         Route::get('article/update/{id}', ['as' => 'article.update', 'uses' => 'ArticleController@update']);
         Route::post('article/doUpdate', ['as' => 'article.doupdate', 'uses' => 'ArticleController@doupdate']);
 
-        Route::get('category/index', ['as' => 'category.index', 'uses' => 'CategoryController@index']);
+        Route::get('category', ['as' => 'category.index', 'uses' => 'CategoryController@index']);
         Route::get('category/del/{id}', ['as' => 'category.del', 'uses' => 'CategoryController@del']);
         Route::post('category/add', ['as' => 'category.add', 'uses' => 'CategoryController@add']);
 
-        Route::get('comment/index', ['as' => 'comment.index', 'uses' => 'CommentController@index']);
+        Route::get('comment', ['as' => 'comment.index', 'uses' => 'CommentController@index']);
         Route::get('comment/del/{id}', ['as' => 'comment.del', 'uses' => 'CommentController@del']);
         Route::get('comment/update/{id}', ['as' => 'comment.update', 'uses' => 'CommentController@update']);
+        
+        Route::get('photo', ['as' => 'photo.index', 'uses' => 'PhotoController@index']); // 相片列表
+        Route::post('photo/imgUpload', ['as' => 'photo.imgUpload', 'uses' => 'PhotoController@imgUpload']); 
     }); 

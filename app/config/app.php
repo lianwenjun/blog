@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 return array(
 
@@ -121,8 +121,10 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+        //插件服务管理器添加
         'Cartalyst\Sentry\SentryServiceProvider',
-        'Maatwebsite\Excel\ExcelServiceProvider'
+        'Maatwebsite\Excel\ExcelServiceProvider',
+         'JildertMiedema\LaravelPlupload\LaravelPluploadServiceProvider',
 
     ),
 
@@ -190,9 +192,10 @@ return array(
         'URL'               => 'Illuminate\Support\Facades\URL',
         'Validator'         => 'Illuminate\Support\Facades\Validator',
         'View'              => 'Illuminate\Support\Facades\View',
+        //插件别名添加
         'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel'
-
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        'Plupload'        => 'JildertMiedema\LaravelPlupload\Facades\Plupload'
     ),
 
 );

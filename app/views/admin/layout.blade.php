@@ -157,6 +157,10 @@
             <ul>
                 <li><a href="{{ URL::route('comment.index') }}">评论列表</a></li>
             </ul>
+            <div class="m_title">上传管理</div> 
+            <ul>
+                <li><a href="{{ URL::route('photo.index') }}">照片列表</a></li>
+            </ul>
         </div>
     <!--菜单结束-->
 
