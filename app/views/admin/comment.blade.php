@@ -1,5 +1,7 @@
 @extends('admin.layout')
 
+
+
  <!--内容开始-->
  @section('content')
         <div class="content">

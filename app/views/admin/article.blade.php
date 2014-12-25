@@ -1,5 +1,6 @@
 @extends('admin.layout')
 
+
  <!--内容开始-->
  @section('content')
         <div class="content">
@@ -32,9 +33,12 @@
                     </tr>
       
                     @endforelse
+
                 </tbody>
             </table>
+            
             </div>  
         </div>
         <!--内容结束-->
+        
 @stop

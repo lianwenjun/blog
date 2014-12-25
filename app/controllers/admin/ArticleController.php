@@ -31,8 +31,9 @@ class ArticleController extends BaseController {
     * @return Response
     */
     public function index() {
-        $model = new Articles();
-        $lists = $model->lists();
+        $data = Input::all();
+        $article = new Articles();
+        $lists = $article->lists();
         $this->layout->content = View::make('admin.article')->with('lists', $lists);
     }
 
